@@ -1,9 +1,9 @@
 
-const initalState = 0;
+const initalState = false;
 const ChangeLoginBtnBoolValue = (state = initalState, action) => {
     switch (action.type) {
-        case ("BOOLTRUE"): return 1;
-        case ("BOOLFALSE"): return 0;
+        case ("BOOLTRUE"): return true;
+        case ("BOOLFALSE"): return false;
         default: return state;
     }
 }

@@ -10,8 +10,8 @@ import {
   BrowserRouter as Router,
   Routes,
   Route,
-  Link,
-  useHistory
+  // Link,
+  // useHistory
 } from "react-router-dom"
 
 function App() {
@@ -27,14 +27,9 @@ function App() {
       <Router>
 
         <Navbar />
-        {/* <HomePage /> */}
-        {/* <DashboardPage /> */}
-        {/* <LoginPage /> */}
-        {/* <SignUpPage /> */}
         <Routes>
           <Route exact path='/' element={<HomePage />} />
           <Route exact path='/dashboard' element={<DashboardPage />} />
-          {/* <Route exact path='/signup' element={<SignUpPage />} /> */}
         </Routes>
         <Footer />
       </Router>

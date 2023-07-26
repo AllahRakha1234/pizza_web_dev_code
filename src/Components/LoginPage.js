@@ -3,7 +3,6 @@ import React from 'react'
 
 export function LoginPage(props) {
 
-
     return (
         <>
             <div>
@@ -20,13 +19,13 @@ export function LoginPage(props) {
                         </div>
                     </div>
                     {/* SHOW ADMIN KEY INPUT OR NOT */}
-                    {/* {
+                    {
                         props.showKeyBox && <div className="form-row">
                             <div className="p-2">
                                 <input type="password" className="form-control" placeholder="Enter admin key" name="adminKey" id="password" />
                             </div>
                         </div>
-                    } */}
+                    }
                     {/* <!-- Submit Button --> */}
                     <div className="form-row">
                         <div className="p-2">
@@ -35,8 +34,7 @@ export function LoginPage(props) {
                             </button>
                         </div>
                     </div>
-                    {/* <!-- REDIRECTION TO SIGN UP PAGE (onClick={props.handleSingUpBtnClick(false)} ) --> */}
-                    {/* onClick={() => { props.handleSingUpBtnClick(true) }} */}
+                    {/* <!-- REDIRECTION TO SIGN UP PAGE --> */}
                     <p className="m-auto">
                         Don't have an account? <a href="/">Register Here</a>
                     </p>

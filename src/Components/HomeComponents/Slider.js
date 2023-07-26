@@ -6,7 +6,7 @@ import myImage3 from '../../assets/images/image2Slider.jpeg';
 export default function Slider() {
     return (
         <>
-            <div className="container mt-3">
+            <div className="container mt-4">
                 <div id="carouselExampleIndicators" className="carousel slide">
                     <div className="carousel-indicators">
                         <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" className="active" aria-current="true" aria-label="Slide 1"></button>
