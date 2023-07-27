@@ -5,12 +5,15 @@ import React, { useState } from 'react'
 import logoImg from '../assets/images/logo1.png';
 import { LoginPage } from './LoginPage';
 import { useSelector, useDispatch } from "react-redux";
-import { toggleTrue, toggleFalse } from "../actions/loginBtnAction"
+import { setLoginBtnBoolValue } from "../actions/actions"
+// import { setSignUpBtnBoolValue } from "../actions/actions"
+import SignUpPage from './SignUpPage';
 
 export default function Navbar() {
 
     const [showKeyBox, setShowKeyBox] = useState(false);
-    const myState = useSelector((state) => state.ChangeLoginBtnBoolValue);
+    const loginState = useSelector((state) => state.changeLoginBoolValue);
+    const signupState = useSelector((state) => state.changeSignUpBoolValue);
     const dispatch = useDispatch();
 
     const handleOpenLoginShow = (txt) => {
@@ -20,11 +23,11 @@ export default function Navbar() {
         else {
             setShowKeyBox(false);
         }
-        dispatch(toggleTrue());
+        dispatch(setLoginBtnBoolValue());
     }
 
     const handleClosLoginShow = () => {
-        dispatch(toggleFalse())
+        dispatch(setLoginBtnBoolValue())
     }
 
     // ********* RENDER **********
@@ -45,16 +48,21 @@ export default function Navbar() {
             </nav>
             {/* MODAL CODE */}
 
-            {myState && (
+            {loginState && (
                 <div className="modal" style={{ display: 'block', background: 'rgba(0,0,0,0.8)' }}>
                     <div className="modal-dialog modal-dialog-centered">
                         <div className="modal-content">
                             <div className="modal-header">
-                                <h2 className="modal-title">Login Page</h2>
+                                <h2 className="modal-title">{signupState ? "Sign Up" : "Login"} Page</h2>
                                 <button type="button" className="btn-close" onClick={handleClosLoginShow} aria-label="Close"></button>
                             </div>
                             <div className="modal-body">
-                                <LoginPage showKeyBox={showKeyBox} />
+                                {/* CONDITIONAL RENDERING LOGIN OR SINGUP PAGE */}
+                                {signupState ?
+                                    <SignUpPage />
+                                    :
+                                    <LoginPage showKeyBox={showKeyBox} />
+                                }
                             </div>
                             <div className="modal-footer">
                                 <button className="btn btn-danger" onClick={handleClosLoginShow} >

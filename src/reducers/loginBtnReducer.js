@@ -1,11 +1,12 @@
 
 const initalState = false;
-const ChangeLoginBtnBoolValue = (state = initalState, action) => {
+const changeLoginBoolValue = (state = initalState, action) => {
     switch (action.type) {
-        case ("BOOLTRUE"): return true;
-        case ("BOOLFALSE"): return false;
+        case ("BOOLLOGIN"): return !state;
+        // case ("BOOLFALSE"): return false;
         default: return state;
     }
 }
 
-export default ChangeLoginBtnBoolValue;
+
+export default changeLoginBoolValue;

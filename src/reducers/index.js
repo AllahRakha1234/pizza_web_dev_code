@@ -1,8 +1,10 @@
-import ChangeLoginBtnBoolValue from "./loginBtnReducer";
+import changeLoginBoolValue from "./loginBtnReducer";
+import changeSignUpBoolValue from "./signupBtnReducer"
 import { combineReducers } from 'redux';
 
 const rootReducer = combineReducers({
-    ChangeLoginBtnBoolValue: ChangeLoginBtnBoolValue
+    changeLoginBoolValue: changeLoginBoolValue,
+    changeSignUpBoolValue: changeSignUpBoolValue
     // ChangeLoginBtnBoolValue
 });
 

@@ -1,7 +1,16 @@
 
 import React from 'react'
+import { useSelector, useDispatch } from "react-redux";
+import { setSignUpBtnBoolValue } from "../actions/actions"
 
 export function LoginPage(props) {
+
+    // const signupState = useSelector((state) => state.changeSignUpBoolValue);
+    const dispatch = useDispatch();
+
+    const handleSignUpBtnClick = () => {
+        dispatch(setSignUpBtnBoolValue());
+    }
 
     return (
         <>
@@ -22,7 +31,7 @@ export function LoginPage(props) {
                     {
                         props.showKeyBox && <div className="form-row">
                             <div className="p-2">
-                                <input type="password" className="form-control" placeholder="Enter admin key" name="adminKey" id="password" />
+                                <input type="password" className="form-control" placeholder="Enter admin key" name="adminKey" id="adminKey" />
                             </div>
                         </div>
                     }
@@ -36,7 +45,8 @@ export function LoginPage(props) {
                     </div>
                     {/* <!-- REDIRECTION TO SIGN UP PAGE --> */}
                     <p className="m-auto">
-                        Don't have an account? <a href="/">Register Here</a>
+                        {/* Don't have an account? <a onClick={() => { dispatch(setSignUpBtnBoolValue()) }} href="/">Register Here</a> */}
+                        Don't have an account? <button onClick={handleSignUpBtnClick} className='makeBtnLinkUtility'>Register Here</button>
                     </p>
                     <p className="m-auto">
                         <a href="signup.html">Forgot Password ?</a>
@@ -46,4 +56,5 @@ export function LoginPage(props) {
 
         </>
     )
+    // }
 }
