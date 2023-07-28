@@ -1,11 +1,9 @@
 import './App.css';
 import Navbar from './Components/Navbar';
+import Footer from './Components/Footer';
 import HomePage from './Components/HomePage';
 import DashboardPage from './Components/DashboardPage';
-// import { SignUpPage } from './Components/SignUpPage';
-import Footer from './Components/Footer';
-// import { useSelector, useDispatch } from "react-redux";
-// import { toggleTrue, toggleFalse } from "./actions/loginBtnAction"
+import AdminPage from './Components/AdminPage';
 import {
   BrowserRouter as Router,
   Routes,
@@ -13,6 +11,7 @@ import {
   // Link,
   // useHistory
 } from "react-router-dom"
+// import CustomPizzaPage from './Components/CustomPizzaPage';
 
 function App() {
 
@@ -26,8 +25,10 @@ function App() {
     <>
       <Router>
         <Navbar />
+        <AdminPage />
+        {/* <CustomPizzaPage /> */}
         <Routes>
-          <Route exact path='/' element={<HomePage />} />
+          <Route exact path='/home' element={<HomePage />} />
           <Route exact path='/dashboard' element={<DashboardPage />} />
         </Routes>
         <Footer />

@@ -2,12 +2,13 @@
 import '../index.css'
 import React, { useState } from 'react'
 // import PropTypes from 'prop-types'
-import logoImg from '../assets/images/logo1.png';
+
+import SignUpPage from './SignUpPage';
 import { LoginPage } from './LoginPage';
+import logoImg from '../assets/images/logo1.png';
 import { useSelector, useDispatch } from "react-redux";
 import { setLoginBtnBoolValue } from "../actions/actions"
-// import { setSignUpBtnBoolValue } from "../actions/actions"
-import SignUpPage from './SignUpPage';
+
 
 export default function Navbar() {
 

@@ -138,6 +138,31 @@ code {
 }
 
 
+/* ***** CUSTOMPIZZADPAGE CSS****** */
+
+.rad {
+  height: 5vh;
+  width: 5vw;
+}
+
+.customePizzaImg{
+  width: 100%;
+  height: 100%;
+  border-radius: 30px;
+  object-fit:cover;
+}
+
+/* ***** ADMINDPAGE CSS****** */
+
+.adminNavbar{
+  border-radius: 30px;
+}
+
+.table,th, td{
+  border: 2px solid rgb(0, 0, 0);
+}
+
+
 /* ****** FOOTER CSS ***** */
 
 .footer{
@@ -155,4 +180,8 @@ display{
   color: rgba(var(--bs-link-color-rgb));
   text-decoration: underline;
   border: none;
+}
+
+.btn{
+  border-radius: 30px;
 }

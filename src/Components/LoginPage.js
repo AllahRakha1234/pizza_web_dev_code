@@ -45,7 +45,6 @@ export function LoginPage(props) {
                     </div>
                     {/* <!-- REDIRECTION TO SIGN UP PAGE --> */}
                     <p className="m-auto">
-                        {/* Don't have an account? <a onClick={() => { dispatch(setSignUpBtnBoolValue()) }} href="/">Register Here</a> */}
                         Don't have an account? <button onClick={handleSignUpBtnClick} className='makeBtnLinkUtility'>Register Here</button>
                     </p>
                     <p className="m-auto">

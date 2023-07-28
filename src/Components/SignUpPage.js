@@ -6,8 +6,7 @@ import { setSignUpBtnBoolValue } from "../actions/actions"
 
 export default function SignUpPage(props) {
 
-    // const [showSignUp, setShowSignUp] = useState(false);
-    const signupState = useSelector((state) => state.changeSignUpBoolValue);
+    // const signupState = useSelector((state) => state.changeSignUpBoolValue);
     const dispatch = useDispatch();
 
     const handleCloseShow = () => {
