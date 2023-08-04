@@ -1,21 +1,25 @@
 
-import '../index.css'
-import React, { useState } from 'react'
+import '../index.css';
+import React, { useState } from 'react';
 // import PropTypes from 'prop-types'
-
+import { Link, useNavigate } from 'react-router-dom';
 import SignUpPage from './SignUpPage';
 import { LoginPage } from './LoginPage';
 import logoImg from '../assets/images/logo1.png';
 import { useSelector, useDispatch } from "react-redux";
-import { setLoginBtnBoolValue } from "../actions/actions"
+import { setLoginBtnBoolValue } from "../actions/actions";
+import { showLoginOrLogoutBtnAction } from "../actions/actions";
 
 
 export default function Navbar() {
 
+    const history = useNavigate();
+    const dispatch = useDispatch();
     const [showKeyBox, setShowKeyBox] = useState(false);
     const loginState = useSelector((state) => state.changeLoginBoolValue);
     const signupState = useSelector((state) => state.changeSignUpBoolValue);
-    const dispatch = useDispatch();
+    const loginOrLogoutBtnState = useSelector(state => state.showLoginOrLogoutBtnReducer)
+    const localLoginLogoutBtnState = localStorage.getItem("currentUser");
 
     const handleOpenLoginShow = (txt) => {
         if (txt === "admin") {
@@ -31,6 +35,12 @@ export default function Navbar() {
         dispatch(setLoginBtnBoolValue())
     }
 
+    const handleLogoutBtnClick = () => {
+        dispatch(showLoginOrLogoutBtnAction());
+        localStorage.removeItem("currentUser");
+        history("/");
+    }
+
     // ********* RENDER **********
 
     return (
@@ -39,12 +49,20 @@ export default function Navbar() {
                 <div className="container-fluid">
                     <div className='d-flex fd-row w-100%'>
                         <img src={logoImg} id='logo' style={{ height: "45px", width: "65px", marginRight: "8px" }} alt="" />
-                        <a className="navbar-brand text-dark" href="home"><h4 className='text-light mt-1'>Pizza Hut</h4></a>
+                        <Link className="navbar-brand text-dark" to="/">
+                            <h4 className='text-light mt-1'>Pizza Hut</h4></Link>
                     </div>
-                    <div className="d-flex w-100%">
-                        <button onClick={() => handleOpenLoginShow("admin")} className="btn btn-outline-light mx-2">Admin Login</button>
-                        <button onClick={() => handleOpenLoginShow("user")} className="btn btn-outline-light">User Login</button>
-                    </div>
+                    {/* SHOWING LOGIN OR LOGOUT BUTTON LOGIN */}
+                    {
+                        // loginOrLogoutBtnState ?
+                        localLoginLogoutBtnState !== null ?
+                            <button onClick={() => handleLogoutBtnClick()} className="btn btn-outline-light mx-2">Logout</button>
+                            :
+                            <div className="d-flex w-100%">
+                                <button onClick={() => handleOpenLoginShow("admin")} className="btn btn-outline-light mx-2">Admin Login</button>
+                                <button onClick={() => handleOpenLoginShow("user")} className="btn btn-outline-light">User Login</button>
+                            </div>
+                    }
                 </div>
             </nav>
             {/* MODAL CODE */}
@@ -74,7 +92,6 @@ export default function Navbar() {
                     </div>
                 </div>
             )}
-
         </>
     )
 }

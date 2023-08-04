@@ -137,6 +137,11 @@ code {
   }
 }
 
+.pizzasRender{
+  display: flex;
+  /* flex-flow:row-reverse; */
+  flex-wrap:wrap-reverse;
+}
 
 /* ***** CUSTOMPIZZADPAGE CSS****** */
 
@@ -162,6 +167,21 @@ code {
   border: 2px solid rgb(0, 0, 0);
 }
 
+/* ***** CARTDPAGE CSS****** */
+
+
+.cartMsg{
+  animation: cartMsgAnimation 5s ease-in-out 1s infinite;
+}
+
+@keyframes cartMsgAnimation{
+  0%{
+    transform: rotateY(0deg);
+  }
+  100%{
+    transform: rotateY(360deg);
+  }
+}
 
 /* ****** FOOTER CSS ***** */
 
@@ -183,5 +203,7 @@ display{
 }
 
 .btn{
-  border-radius: 30px;
+  border-radius: 15px;
+  cursor: pointer;
+  /* height: 40px; */
 }

@@ -12,6 +12,7 @@ import {
   // useHistory
 } from "react-router-dom"
 // import CustomPizzaPage from './Components/CustomPizzaPage';
+// import CartPage from './Components/CartPage';
 
 function App() {
 
@@ -25,12 +26,15 @@ function App() {
     <>
       <Router>
         <Navbar />
-        <AdminPage />
+        {/* <AdminPage /> */}
         {/* <CustomPizzaPage /> */}
+        {/* <CartPage /> */}
         <Routes>
-          <Route exact path='/home' element={<HomePage />} />
+          <Route exact path='/' element={<HomePage />} />
           <Route exact path='/dashboard' element={<DashboardPage />} />
+          {/* <Route exact path='/customPizza' element={<CustomPizzaPage />} /> */}
         </Routes>
+        {/* <DashboardPage /> */}
         <Footer />
       </Router>
     </>

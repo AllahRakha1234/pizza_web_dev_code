@@ -1,18 +1,71 @@
 
-import React, { useState } from 'react'
+import axios from "axios"
+import React, { useEffect, useState } from 'react'
+import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from 'react-redux';
 import { setLoginBtnBoolValue } from "../actions/actions"
 import { setSignUpBtnBoolValue } from "../actions/actions"
+import { signupUserAction } from "../actions/actions"
 
 export default function SignUpPage(props) {
 
-    // const signupState = useSelector((state) => state.changeSignUpBoolValue);
     const dispatch = useDispatch();
-
     const handleCloseShow = () => {
         dispatch(setLoginBtnBoolValue());
         dispatch(setSignUpBtnBoolValue());
     }
+    const singupState = useSelector(state => state.signupUserReducer);
+    const resFromDbForSignup = singupState.resFromDbForSignup
+
+    // SERVER CODE TO SEND DATA TO DB
+
+    const [name, setName] = useState("");
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+    const [cpassword, setcPassword] = useState("");
+
+    // const initializeAllInputsSignepPage = () => {
+    //     setName(" ");
+    //     setEmail(" ");
+    //     setPassword(" ");
+    //     setcPassword(" ");
+    //     console.log("Function is called!!");
+    // }
+
+    const handleAddAcount = (event) => {
+        event.preventDefault();
+        if (name === "" || email === "" || password === "" || cpassword === "") {
+            alert("All the Fields are Required 📁");
+        }
+
+        else if (password !== cpassword) {
+            alert("Password 🔑 and Confirm Password 🔑 Should Be Same");
+        }
+        else if (password.length < 8) {
+            alert("Password 🔑 Length Should Be Atleast 8 Characters Long");
+        }
+        else {
+            dispatch(signupUserAction({ name, email, password, cpassword }));
+            try {
+                if (resFromDbForSignup === "Exist") {
+                    alert("User Already Exist 🙎🏼‍♂️");
+                    // dispatch(setSignUpBtnBoolValue());
+                    // dispatch(setLoginBtnBoolValue());
+                    // initializeAllInputsSignepPage();
+                }
+                else if (resFromDbForSignup === "NotExist") {
+                    alert("User Registered Successfully 🙎🏼‍♂️");
+                    dispatch(setSignUpBtnBoolValue());
+                    // dispatch(setLoginBtnBoolValue());
+                }
+            } catch (error) {
+                alert("Error Occur: ", error);
+            }
+        }
+    }
+
+
+    // ********* REDNER *********
 
     return (
         <>
@@ -26,26 +79,31 @@ export default function SignUpPage(props) {
                         <div className="modal-body">
                             <div>
                                 <h3>Make your account</h3>
-                                <form className='m-auto' action="#" id="loginPage" method="POST">
+                                <form className='m-auto' action="POST" id="loginPage" method="POST">
                                     <div className="form-row">
                                         <div className="p-2">
-                                            <input type="email" className="form-control" placeholder="Enter email" name="email" id="email" />
+                                            <input type="text" onChange={(e) => setName(e.target.value)} className="form-control" placeholder="Enter name" name="name" id="name" />
                                         </div>
                                     </div>
                                     <div className="form-row">
                                         <div className="p-2">
-                                            <input type="password" className="form-control" placeholder="Enter password" name="password" id="password" />
+                                            <input type="email" onChange={(e) => setEmail(e.target.value)} className="form-control" placeholder="Enter email" name="email" id="email" />
                                         </div>
                                     </div>
                                     <div className="form-row">
                                         <div className="p-2">
-                                            <input type="password" className="form-control" placeholder="Confirm password" name="password" id="confirmPassword" />
+                                            <input type="password" onChange={(e) => setPassword(e.target.value)} className="form-control" placeholder="Enter password" name="password" id="password" />
+                                        </div>
+                                    </div>
+                                    <div className="form-row">
+                                        <div className="p-2">
+                                            <input type="password" onChange={(e) => setcPassword(e.target.value)} className="form-control" placeholder="Confirm password" name="confirmPassword" id="confirmPassword" />
                                         </div>
                                     </div>
                                     {/* <!-- Submit Button --> */}
                                     <div className="form-row">
                                         <div className="p-2">
-                                            <button type="submit" className="btn1" id="loginButton">
+                                            <button onClick={handleAddAcount} className="btn1" id="signupButton">
                                                 Add Acount
                                             </button>
                                         </div>

@@ -9,7 +9,6 @@ export default function GradientComp(props) {
 
     const handleRadioChange = (event) => {
         setSelectedGradient(event.target.value);
-        console.log(event.target.value);
     };
 
     return (
